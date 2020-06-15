@@ -84,8 +84,13 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
-      posts: state => state.posts
+      posts: state => state.post.items
     })
+  },
+  fetch({ store }) {
+    if (store.state.post.items.length === 0) {
+      return store.dispatch("post/fetchPosts");
+    }
   },
   components: {
     Navbar
