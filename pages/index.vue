@@ -46,8 +46,7 @@ export default {
         {
           title: "My Second Post",
           subtitle: "My Second Subtitle",
-          _id: 2,
-          createdOn: new Date()
+          _id: 2
         }
       ]
     };
