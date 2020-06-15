@@ -36,27 +36,17 @@ import PostItem from "~/components/PostItem";
 export default {
   data() {
     return {
-      title: "My Title from Index",
-      posts: [
-        {
-          title: "My First Post",
-          subtitle: "My First Subtitle",
-          _id: 1,
-          createdOn: new Date(),
-          isRead: false
-        },
-        {
-          title: "My Second Post",
-          subtitle: "My Second Subtitle",
-          _id: 2,
-          isRead: true
-        }
-      ]
+      title: "My Title from Index"
     };
   },
   components: {
     Navbar,
     PostItem
+  },
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    }
   }
 };
 </script>
