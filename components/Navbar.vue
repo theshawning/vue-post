@@ -1,3 +1,4 @@
+
 <template>
   <nav class="navbar has-shadow">
     <div class="container">
@@ -9,6 +10,7 @@
           />
         </a>
         <div
+          @click="isActive = !isActive"
           class="navbar-burger burger"
           aria-label="menu"
           aria-expanded="false"
@@ -19,16 +21,18 @@
           <span></span>
         </div>
       </div>
-      <div id="navMenu" class="navbar-menu">
+      <div
+        @click="isActive = !isActive"
+        id="navMenu"
+        :class="{'is-active': isActive}"
+        class="navbar-menu"
+      >
         <div class="navbar-end">
-          <div class="navbar-item has-dropdown">
+          <div :class="{'is-active': isActive}" class="navbar-item has-dropdown">
             <a class="navbar-link">Menu</a>
             <div class="navbar-dropdown">
-              <a class="navbar-item">Dashboard</a>
-              <a class="navbar-item">Profile</a>
-              <a class="navbar-item">Settings</a>
-              <hr class="navbar-divider" />
-              <div class="navbar-item">Logout</div>
+              <nuxt-link to="/" class="navbar-item">Home</nuxt-link>
+              <nuxt-link to="/manage" class="navbar-item">Manage</nuxt-link>
             </div>
           </div>
         </div>
@@ -36,3 +40,12 @@
     </div>
   </nav>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      isActive: false
+    };
+  }
+};
+</script>

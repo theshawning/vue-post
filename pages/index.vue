@@ -26,6 +26,11 @@
           </div>
         </div>
       </div>
+      <!-- <form>
+        <input type="text" v-model="form.title" />
+        <input type="text" v-model="form.subtitle" />
+      </form>
+      {{isFormValid}}-->
     </div>
   </div>
 </template>
@@ -36,12 +41,19 @@ import PostItem from "~/components/PostItem";
 export default {
   data() {
     return {
-      title: "My Title from Index"
+      title: "My Title from Index",
+      form: {
+        title: "some title",
+        subtitle: "some subtitle"
+      }
     };
   },
   components: {
     Navbar,
     PostItem
+  },
+  mounted() {
+    this.$store.dispatch("fetchPosts");
   },
   computed: {
     posts() {
@@ -50,5 +62,3 @@ export default {
   }
 };
 </script>
-<style>
-</style>
