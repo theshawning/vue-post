@@ -33,10 +33,7 @@ export default {
   },
   methods: {
     emitModalSubmit() {
-      this.$emit("modalSubmitted", {
-        closeModal: this.closeModal,
-        data: "Just some data"
-      });
+      this.$emit("modalSubmitted", this.closeModal);
     },
     closeModal() {
       this.isActive = false;

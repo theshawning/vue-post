@@ -33,19 +33,9 @@
             <!-- card end -->
           </div>
         </div>
-        <div class="column is-6 message hero is-fullheight is-hidden" id="message-pane">
+        <div class="column is-6 message hero is-fullheight" id="message-pane">
           <div class="box message-preview">
-            <div class="top">
-              <div class="avatar">
-                <img src="https://placehold.it/128x128" />
-              </div>
-              <div class="address">
-                <div class="name">John Smith</div>
-                <div class="email">someone@gmail.com</div>
-              </div>
-              <hr />
-              <div class="content"></div>
-            </div>
+            <PostManage />
           </div>
         </div>
       </div>
@@ -74,6 +64,7 @@
 <script>
 import Navbar from "../components/Navbar";
 import PostCreate from "../components/PostCreate";
+import PostManage from "../components/PostManage";
 import { mapState } from "vuex";
 export default {
   computed: {
@@ -88,7 +79,8 @@ export default {
   },
   components: {
     Navbar,
-    PostCreate
+    PostCreate,
+    PostManage
   }
 };
 </script>
@@ -97,11 +89,9 @@ export default {
 .manage-page {
   padding: 30px;
 }
-
 .card {
   margin-bottom: 10px;
 }
-
 .card:hover {
   cursor: pointer;
   background-color: #eeeeee;
