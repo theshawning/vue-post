@@ -4,14 +4,7 @@
     <div class="manage-page">
       <div class="columns mail-app">
         <aside class="column is-2 aside hero">
-          <div>
-            <div class="compose has-text-centered">
-              <a class="button is-danger is-block is-bold">
-                <span class="compose">Create</span>
-              </a>
-            </div>
-            <div class="main"></div>
-          </div>
+          <PostCreate />
         </aside>
         <div class="column is-4 messages hero is-fullheight" id="message-feed">
           <div class="inbox-messages" id="inbox-messages">
@@ -80,6 +73,7 @@
 
 <script>
 import Navbar from "../components/Navbar";
+import PostCreate from "../components/PostCreate";
 import { mapState } from "vuex";
 export default {
   computed: {
@@ -93,7 +87,8 @@ export default {
     }
   },
   components: {
-    Navbar
+    Navbar,
+    PostCreate
   }
 };
 </script>
