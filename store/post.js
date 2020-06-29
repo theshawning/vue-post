@@ -29,6 +29,12 @@ export const actions = {
     return fetchPostsAPI().then((posts) => {
       commit('setPosts', posts)
     })
+  },
+  createPost({ commit }, postData) {
+    // create post on a server, or persist data in some way
+    postData._id = Math.random().toString(36).substr(2, 7)
+    postData.createdAt = new Date()
+    commit('addPost', postData)
   }
 }
 
@@ -37,5 +43,8 @@ export const actions = {
 export const mutations = {
   setPosts(state, posts) {
     state.items = posts
+  },
+  addPost(state, post) {
+    state.items.push(post)
   }
 }
