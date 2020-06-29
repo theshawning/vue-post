@@ -88,7 +88,7 @@ export default {
     })
   },
   fetch({ store }) {
-    if (store.state.post.items.length === 0) {
+    if (store.getters["post/hasEmptyItems"]) {
       return store.dispatch("post/fetchPosts");
     }
   },

@@ -48,6 +48,11 @@ export default {
       }
     };
   },
+  fetch({ store }) {
+    if (store.getters["post/hasEmptyItems"]) {
+      return store.dispatch("post/fetchPosts");
+    }
+  },
   components: {
     Navbar,
     PostItem
