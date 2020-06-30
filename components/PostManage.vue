@@ -3,19 +3,19 @@
     <div class="field">
       <label class="label">Title</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Awesome Title" />
+        <input v-model="post.title" class="input" type="text" placeholder="Awesome Title" />
       </div>
     </div>
     <div class="field">
       <label class="label">Subtitle</label>
       <div class="control">
-        <input class="input" type="email" placeholder="Awesome subtitle" />
+        <input v-model="post.subtitle" class="input" type="email" placeholder="Awesome subtitle" />
       </div>
     </div>
     <div class="field">
       <label class="label">Content</label>
       <div class="control">
-        <textarea class="textarea" placeholder="Awesome Content"></textarea>
+        <textarea v-model="post.content" class="textarea" placeholder="Awesome Content"></textarea>
       </div>
     </div>
     <button class="button is-primary">Update</button>
@@ -23,5 +23,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["postData"],
+  data() {
+    return {
+      post: { ...this.postData }
+    };
+  },
+  watch: {
+    postData(data, prevValue) {
+      this.post = { ...data };
+    }
+  }
+};
 </script>

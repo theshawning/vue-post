@@ -9,7 +9,7 @@
         <div class="column is-4 messages hero is-fullheight" id="message-feed">
           <div class="inbox-messages" id="inbox-messages">
             <!-- card start -->
-            <div class="card" v-for="post in posts" :key="post.id">
+            <div @click="activatePost(post)" class="card" v-for="post in posts" :key="post.id">
               <div class="card-content">
                 <div class="msg-header">
                   <span class="msg-from">
@@ -35,7 +35,7 @@
         </div>
         <div class="column is-6 message hero is-fullheight" id="message-pane">
           <div class="box message-preview">
-            <PostManage />
+            <PostManage :postData="activePost" />
           </div>
         </div>
       </div>
@@ -67,6 +67,11 @@ import PostCreate from "../components/PostCreate";
 import PostManage from "../components/PostManage";
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      activePost: {}
+    };
+  },
   computed: {
     ...mapState({
       posts: state => state.post.items
@@ -81,6 +86,11 @@ export default {
     Navbar,
     PostCreate,
     PostManage
+  },
+  methods: {
+    activatePost(post) {
+      this.activePost = post;
+    }
   }
 };
 </script>
