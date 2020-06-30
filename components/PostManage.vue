@@ -31,7 +31,7 @@ export default {
     };
   },
   watch: {
-    postData(data, prevValue) {
+    postData(data) {
       this.post = { ...data };
     }
   }

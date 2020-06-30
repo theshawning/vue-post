@@ -9,7 +9,13 @@
         <div class="column is-4 messages hero is-fullheight" id="message-feed">
           <div class="inbox-messages" id="inbox-messages">
             <!-- card start -->
-            <div @click="activatePost(post)" class="card" v-for="post in posts" :key="post.id">
+            <div
+              @click="activatePost(post)"
+              class="card"
+              v-for="post in posts"
+              :key="post.id"
+              :class="{'is-active': activePost && post._id === activePost._id}"
+            >
               <div class="card-content">
                 <div class="msg-header">
                   <span class="msg-from">
@@ -67,6 +73,11 @@ import PostCreate from "../components/PostCreate";
 import PostManage from "../components/PostManage";
 import { mapState } from "vuex";
 export default {
+  components: {
+    Navbar,
+    PostCreate,
+    PostManage
+  },
   data() {
     return {
       activePost: {}
@@ -82,11 +93,11 @@ export default {
       return store.dispatch("post/fetchPosts");
     }
   },
-  components: {
-    Navbar,
-    PostCreate,
-    PostManage
-  },
+  // created() {
+  //   if (this.posts && this.posts.length > 0) {
+  //     this.activePost = this.posts[0];
+  //   }
+  // },
   methods: {
     activatePost(post) {
       this.activePost = post;
@@ -104,6 +115,9 @@ export default {
 }
 .card:hover {
   cursor: pointer;
+  background-color: #eeeeee;
+}
+.card.is-active {
   background-color: #eeeeee;
 }
 </style>

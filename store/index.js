@@ -5,14 +5,16 @@ export const INITIAL_DATA = {
       subtitle: "My First Subtitle",
       _id: 1,
       createdOn: new Date(),
-      isRead: false
+      isRead: false,
+      content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi at commodi vero nulla voluptas dolorum cupiditate hic facere, fugiat optio."
     },
     {
       title: "My Second Post",
       subtitle: "My Second Subtitle",
       _id: 2,
       createdOn: new Date(),
-      isRead: true
+      isRead: true,
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum officiis, quia et iste omnis, esse, cupiditate in labore at sequi maiores id veritatis tenetur explicabo?"
     }
   ]
 }
