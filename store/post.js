@@ -1,11 +1,12 @@
-import { INITIAL_DATA } from './index'
+import INITIAL_DATA from './initial_data.json'
+import Vue from 'vue'
 
 // function so simulate an asynchronous API call
 export function fetchPostsAPI() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(INITIAL_DATA.posts)
-    }, 200)
+    }, 0)
   })
 }
 
@@ -35,6 +36,14 @@ export const actions = {
     postData._id = Math.random().toString(36).substr(2, 7)
     postData.createdAt = new Date()
     commit('addPost', postData)
+  },
+  updatePost({ commit, state }, postData) {
+    const index = state.items.findIndex(post => {
+      return post._id === postData._id
+    })
+    if (index != -1) {
+      commit('replacePost', { post: postData, index })
+    }
   }
 }
 
@@ -46,5 +55,8 @@ export const mutations = {
   },
   addPost(state, post) {
     state.items.push(post)
+  },
+  replacePost(state, { post, index }) {
+    Vue.set(state.items, index, post)
   }
 }

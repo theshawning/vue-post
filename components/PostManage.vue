@@ -9,7 +9,7 @@
     <div class="field">
       <label class="label">Subtitle</label>
       <div class="control">
-        <input v-model="post.subtitle" class="input" type="email" placeholder="Awesome subtitle" />
+        <input v-model="post.subtitle" class="input" type="text" placeholder="Awesome subtitle" />
       </div>
     </div>
     <div class="field">
@@ -18,7 +18,7 @@
         <textarea v-model="post.content" class="textarea" placeholder="Awesome Content"></textarea>
       </div>
     </div>
-    <button class="button is-primary">Update</button>
+    <button @click.prevent="updatePost" class="button is-primary">Update</button>
   </form>
 </template>
 
@@ -33,6 +33,11 @@ export default {
   watch: {
     postData(data) {
       this.post = { ...data };
+    }
+  },
+  methods: {
+    updatePost() {
+      this.$store.dispatch("post/updatePost", { ...this.post });
     }
   }
 };

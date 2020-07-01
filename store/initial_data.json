@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "title": "My First Post",
+      "subtitle": "My First Subtitle",
+      "_id": 1,
+      "createdOn": 1563537359266,
+      "isRead": false,
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi at commodi vero nulla voluptas dolorum cupiditate hic facere, fugiat optio."
+    },
+    {
+      "title": "My Second Post",
+      "subtitle": "My Second Subtitle",
+      "_id": 2,
+      "createdOn": 1563537359266,
+      "isRead": true,
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum officiis, quia et iste omnis, esse, cupiditate in labore at sequi maiores id veritatis tenetur explicabo?"
+    }
+  ]
+}
