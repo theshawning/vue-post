@@ -34,15 +34,27 @@ export const actions = {
   createPost({ commit }, postData) {
     // create post on a server, or persist data in some way
     postData._id = Math.random().toString(36).substr(2, 7)
-    postData.createdAt = new Date()
-    commit('addPost', postData)
+    postData.createdAt = new Date().getTime()
+    postData.isRead = false
+
+    return this.$axios.$post('/api/posts', postData)
+      .then((res) => {
+        console.log(res)
+        commit('addPost', postData)
+        return postData
+      })
   },
   updatePost({ commit, state }, postData) {
     const index = state.items.findIndex(post => {
       return post._id === postData._id
     })
-    if (index != -1) {
-      commit('replacePost', { post: postData, index })
+    if (index !== -1) {
+      return this.$axios.$patch(`/api/posts/${postData._id}`, postData)
+        .then(res => {
+          console.log(res)
+          commit('replacePost', { post: postData, index })
+          return postData
+        })
     }
   }
 }

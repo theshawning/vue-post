@@ -1,5 +1,5 @@
 <template>
-  <Modal @modalSubmitted="createPost">
+  <modal @modalSubmitted="createPost">
     <template #actionButton>
       <a class="button is-danger is-block is-bold">
         <span class="compose">Create</span>
@@ -9,27 +9,31 @@
       <div class="field">
         <label class="label">Title</label>
         <div class="control">
-          <input v-model="form.title" type="text" placeholder="Awesome Title" class="input" />
+          <input v-model="form.title" class="input" type="text" placeholder="Awesome Title" />
         </div>
       </div>
+
       <div class="field">
         <label class="label">Subtitle</label>
         <div class="control">
-          <input v-model="form.subtitle" type="text" placeholder="Awesome subtitle" class="input" />
+          <input v-model="form.subtitle" class="input" type="text" placeholder="Awesome subtitle" />
         </div>
       </div>
       <div class="field">
         <label class="label">Content</label>
         <div class="control">
-          <textarea v-model="form.content" class="textarea" placeholder="Awesome content"></textarea>
+          <textarea v-model="form.content" class="textarea" placeholder="Awesome Content"></textarea>
         </div>
       </div>
+      <div class="markdown">
+        <label class="label">Contet Preview</label>
+      </div>
     </form>
-  </Modal>
+  </modal>
 </template>
 
 <script>
-import Modal from "./shared/Modal";
+import Modal from "~/components/shared/Modal";
 export default {
   components: {
     Modal
@@ -45,7 +49,6 @@ export default {
   },
   methods: {
     createPost({ closeModal, data }) {
-      // dispatch action with our form data
       this.$store.dispatch("post/createPost", { ...this.form });
       closeModal();
       this.resetForm();
@@ -58,6 +61,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
