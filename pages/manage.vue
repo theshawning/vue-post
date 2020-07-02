@@ -7,7 +7,7 @@
           <PostCreate />
         </aside>
         <div class="column is-4 messages hero is-fullheight" id="message-feed">
-          <div class="inbox-messages" id="inbox-messages">
+          <div v-if="posts && posts.length > 0" class="inbox-messages" id="inbox-messages">
             <!-- card start -->
             <div
               @click="activatePost(post)"
@@ -38,9 +38,11 @@
             </div>
             <!-- card end -->
           </div>
+          <div class="inbox-messages no-posts-title" v-else>There are no posts :(</div>
         </div>
         <div class="column is-6 message hero is-fullheight" id="message-pane">
-          <div class="box message-preview">
+          <div v-if="activePost" class="box message-preview">
+            <button @click="deletePost" class="button is-danger delete-button">Delete</button>
             <PostManage :postData="activePost" />
           </div>
         </div>
@@ -80,7 +82,7 @@ export default {
   },
   data() {
     return {
-      activePost: {}
+      activePost: null
     };
   },
   computed: {
@@ -93,14 +95,28 @@ export default {
       return store.dispatch("post/fetchPosts");
     }
   },
-  // created() {
-  //   if (this.posts && this.posts.length > 0) {
-  //     this.activePost = this.posts[0];
-  //   }
-  // },
+  created() {
+    this.setInitialActivePost();
+  },
   methods: {
     activatePost(post) {
       this.activePost = post;
+    },
+    setInitialActivePost() {
+      if (this.posts && this.posts.length > 0) {
+        this.activePost = this.posts[0];
+      } else {
+        this.activePost = null;
+      }
+    },
+    deletePost() {
+      if (this.activePost) {
+        this.$store
+          .dispatch("post/deletePost", this.activePost._id)
+          .then(() => {
+            this.setInitialActivePost();
+          });
+      }
     }
   }
 };
@@ -119,5 +135,14 @@ export default {
 }
 .card.is-active {
   background-color: #eeeeee;
+}
+.delete-button {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: 0;
+}
+.no-posts-title {
+  font-size: 24px;
 }
 </style>

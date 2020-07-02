@@ -27,7 +27,7 @@ app.post('/posts', function (req, res) {
 })
 
 app.patch('/posts/:id', function (req, res) {
-  const id = req.params.id
+  // const id = req.params.id
   const post = req.body
   const index = initialData.posts.findIndex(p => p._id === post._id)
   initialData.posts[index] = post
@@ -40,15 +40,30 @@ app.patch('/posts/:id', function (req, res) {
       console.log('sending data to client')
       return res.json('File successfully updated')
     })
-  } else {
-    return res.status(422).send({ error: 'Post could not be updated!' })
   }
+  // else {
+  //   return res.status(422).send({ error: 'Post could not be updated!' })
+  // }
 })
 
-app.delete('/posts/:slug', function (req, res) {
-  const slug = req.params.slug
-  console.log('Param is:', slug)
-  return res.json({ posts: 'Data has been deleted' })
+app.delete('/posts/:id', function (req, res) {
+  const id = req.params.id
+  const index = initialData.posts.findIndex(p => p._id === id)
+
+  if (index !== -1) {
+    initialData.posts.splice(index, 1)
+
+    fs.writeFile(path.join(__dirname, filePath), JSON.stringify(initialData, null, 2), function (err) {
+      if (err) {
+        return res.status(422).send(err)
+      }
+      console.log('sending data to client')
+      return res.json({ message: "File successfully deleted" })
+    })
+  }
+  // else {
+  //   return res.status(422).send({ error: 'Post could not be updated!' })
+  // }
 })
 
 module.exports = {
