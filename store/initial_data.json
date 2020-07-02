@@ -1,3 +1,28 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title": "First title",
+      "subtitle": "First subtitle",
+      "content": "content blah blah",
+      "_id": "y6we6dp",
+      "createdAt": 1593692994958,
+      "isRead": false
+    },
+    {
+      "title": "New post",
+      "subtitle": "New psot with md content",
+      "content": "# Heading 1\n## heading 2\n\n---\ncontent bladh baldj",
+      "_id": "z9ahis1",
+      "createdAt": 1593694706808,
+      "isRead": false
+    },
+    {
+      "title": "Amazing new post",
+      "subtitle": "Amazing subtitle",
+      "content": "# Title\n---\n## subtitle\n---\ncontent",
+      "_id": "oxvp4nk",
+      "createdAt": 1593695821516,
+      "isRead": false
+    }
+  ]
 }

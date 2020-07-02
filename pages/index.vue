@@ -11,14 +11,18 @@
                   <h1>Newest Posts</h1>
                   <hr />
                 </div>
-                <PostItem
-                  v-for="post in posts"
-                  :title="post.title"
-                  :subtitle="post.subtitle"
-                  :key="post.id"
-                  :date="post.createdOn"
-                  :isRead="post.isRead"
-                />
+                <div v-if="posts && posts.length > 0">
+                  <PostItem
+                    v-for="post in posts"
+                    :title="post.title"
+                    :subtitle="post.subtitle"
+                    :key="post.id"
+                    :date="post.createdOn"
+                    :isRead="post.isRead"
+                    :id="post._id"
+                  />
+                </div>
+                <div v-else>No posts :(</div>
               </div>
               <!-- end of post -->
             </div>
@@ -39,6 +43,10 @@
 import Navbar from "~/components/Navbar";
 import PostItem from "~/components/PostItem";
 export default {
+  components: {
+    Navbar,
+    PostItem
+  },
   data() {
     return {
       title: "My Title from Index",
@@ -53,16 +61,15 @@ export default {
       return store.dispatch("post/fetchPosts");
     }
   },
-  components: {
-    Navbar,
-    PostItem
-  },
   mounted() {
-    this.$store.dispatch("post/fetchPosts");
+    this.$store.dispatch("post/getArchivedPosts");
   },
   computed: {
     posts() {
       return this.$store.state.post.items;
+    },
+    archivedPosts() {
+      return this.$store.state.post.archivedItems;
     }
   }
 };

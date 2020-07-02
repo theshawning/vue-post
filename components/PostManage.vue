@@ -18,6 +18,10 @@
         <textarea v-model="post.content" class="textarea" placeholder="Awesome Content"></textarea>
       </div>
     </div>
+    <div class="markdown">
+      <label class="label">Content Preview</label>
+      <div v-html="compiledMarkdown"></div>
+    </div>
     <button @click.prevent="updatePost" class="button is-primary">Update</button>
   </form>
 </template>
@@ -38,6 +42,14 @@ export default {
   methods: {
     updatePost() {
       this.$store.dispatch("post/updatePost", { ...this.post });
+    }
+  },
+  computed: {
+    compiledMarkdown() {
+      if (process.client) {
+        return marked(this.post.content, { sanitize: true });
+      }
+      return "";
     }
   }
 };

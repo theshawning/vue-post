@@ -26,7 +26,8 @@
         </div>
       </div>
       <div class="markdown">
-        <label class="label">Contet Preview</label>
+        <label class="label">Content Preview</label>
+        <div v-html="compiledMarkdown"></div>
       </div>
     </form>
   </modal>
@@ -57,6 +58,14 @@ export default {
       this.form.title = "";
       this.form.subtitle = "";
       this.form.content = "";
+    }
+  },
+  computed: {
+    compiledMarkdown() {
+      if (process.client) {
+        return marked(this.form.content, { sanitize: true });
+      }
+      return "";
     }
   }
 };
